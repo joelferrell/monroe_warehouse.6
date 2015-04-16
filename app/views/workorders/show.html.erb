@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Wo number:</strong>
+  <%= @workorder.wo_number %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @workorder.start_date %>
+</p>
+
+<p>
+  <strong>Comp date:</strong>
+  <%= @workorder.comp_date %>
+</p>
+
+<p>
+  <strong>Est completion:</strong>
+  <%= @workorder.est_completion %>
+</p>
+
+<p>
+  <strong>Requestor:</strong>
+  <%= @workorder.requestor %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @workorder.location %>
+</p>
+
+<p>
+  <strong>Repair facility:</strong>
+  <%= @workorder.repair_facility %>
+</p>
+
+<p>
+  <strong>Repair type:</strong>
+  <%= @workorder.repair_type %>
+</p>
+
+<p>
+  <strong>Summary:</strong>
+  <%= @workorder.summary %>
+</p>
+
+<p>
+  <strong>Percent complete:</strong>
+  <%= @workorder.percent_complete %>
+</p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @workorder.item %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @workorder.priority %>
+</p>
+
+<%= link_to 'Edit', edit_workorder_path(@workorder) %> |
+<%= link_to 'Back', workorders_path %>

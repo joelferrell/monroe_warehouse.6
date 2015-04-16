@@ -1,27 +1,30 @@
-<h1>Listing workorders</h1>
-
-<table>
+<%- model_class = Workorder -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Workorder %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Wo number</th>
-      <th>Start date</th>
-      <th>Comp date</th>
-      <th>Est completion</th>
-      <th>Requestor</th>
-      <th>Location</th>
-      <th>Repair facility</th>
-      <th>Repair type</th>
-      <th>Summary</th>
-      <th>Percent complete</th>
-      <th>Item</th>
-      <th>Priority</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:wo_number) %></th>
+      <th><%= model_class.human_attribute_name(:start_date) %></th>
+      <th><%= model_class.human_attribute_name(:comp_date) %></th>
+      <th><%= model_class.human_attribute_name(:est_completion) %></th>
+      <th><%= model_class.human_attribute_name(:requestor) %></th>
+      <th><%= model_class.human_attribute_name(:location) %></th>
+      <th><%= model_class.human_attribute_name(:repair_facility) %></th>
+      <th><%= model_class.human_attribute_name(:repair_type) %></th>
+      <th><%= model_class.human_attribute_name(:summary) %></th>
+      <th><%= model_class.human_attribute_name(:percent_complete) %></th>
+      <th><%= model_class.human_attribute_name(:priority) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @workorders.each do |workorder| %>
       <tr>
+        <td><%= workorder.id %></td>
         <td><%= workorder.wo_number %></td>
         <td><%= workorder.start_date %></td>
         <td><%= workorder.comp_date %></td>
@@ -32,16 +35,22 @@
         <td><%= workorder.repair_type %></td>
         <td><%= workorder.summary %></td>
         <td><%= workorder.percent_complete %></td>
-        <td><%= workorder.item %></td>
         <td><%= workorder.priority %></td>
-        <td><%= link_to 'Show', workorder %></td>
-        <td><%= link_to 'Edit', edit_workorder_path(workorder) %></td>
-        <td><%= link_to 'Destroy', workorder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l workorder.created_at, format: :long %></td>
+        <td>
+          <%= link_to workorder_path(workorder), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to workorder_path(workorder), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Workorder', new_workorder_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_workorder_path,
+            :class => 'btn btn-primary' %>
